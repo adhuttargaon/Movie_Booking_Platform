@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="ISO-8859-1">
+<title>Movies</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">P_V_R Cinema</a>
+ 
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+    
+      <a class="nav-link active" th:href="@{/movies/{id}}">View_Shows</a>
+      <a class="nav-link active" th:href="@{/movies/create}">Add_Movies</a>
+      <a class="nav-link" th:href="@{/movies/{id}/edit}">My_Booking</a>
+       <a class="nav-link" th:href="@{/movies/{id}/edit}">View_Theatre</a>
+       
+      
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+
+<img src="slide1.jpg">
+
+</div>
+
+
+</body>
+</html>

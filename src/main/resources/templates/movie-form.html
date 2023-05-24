@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Get Movies</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">P_V_R Cinema</a>
+ 
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+    
+      <a class="nav-link active" th:href="@{/movies/{movie_id}}">Details</a>
+      <a class="nav-link active" th:href="@{/movies/{movie_id}/edit}">Get_Movie</a>
+
+      
+    </div>
+  </div>
+</nav>
+
+    <form th:action="@{/movies/create1}" th:object="${movie}" method="post">
+        <input type="hidden" th:field="*{movie_id}" />
+         <div>
+        <label>Title:</label>
+       
+        <input type="text" class="form-control" th:field="*{movie_title}" />
+        </div>
+        
+         <div>
+        <label>Genre:</label>
+        <input type="text" class="form-control" th:field="*{genre}" />
+        </div>
+        
+        <div>
+        <label>Director:</label>
+        <input type="text" class="form-control" th:field="*{director}" />
+     	</div>
+     	
+     	<div>
+        <label>Duration:</label>
+        <input type="text" class="form-control" th:field="*{duration}" />
+      	</div>
+      	
+      	<div>
+        <label>Ratings:</label>
+        <input type="text" class="form-control" th:field="*{rating}" />
+       </div>
+       
+       <br>
+        
+       <button type="submit" class="btn btn-success"  href="movie-details" style="width:150px">Save</button>
+        <!-- <a class="btn btn-primary" href="movie-details" role="button" type="button">Save</a> -->
+    </form> 
+    
+    
+ 
+
+
+
+</body>
+</html>
