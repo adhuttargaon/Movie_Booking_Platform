@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
 <head>
 <meta charset="ISO-8859-1">
 <title>Get Movies</title>
@@ -15,52 +15,44 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
     
-      <a class="nav-link active" th:href="@{/movies/{movie_id}}">Details</a>
-      <a class="nav-link active" th:href="@{/movies/{movie_id}/edit}">Get_Movie</a>
+      <a class="nav-link active" th:href="@{/movie-details}">Details</a>
+     <!--  <a class="nav-link active" th:href="@{/movies/{movie_id}/edit}">Movies</a> -->
 
       
     </div>
   </div>
 </nav>
+<div class="container p-5">
+<h4 class="text-center text-primary">Add New Movies</h4>
+<div class="card-body">
 
-    <form th:action="@{/movies/create1}" th:object="${movie}" method="post">
-        <input type="hidden" th:field="*{movie_id}" />
-         <div>
-        <label>Title:</label>
-       
-        <input type="text" class="form-control" th:field="*{movie_title}" />
-        </div>
-        
-         <div>
-        <label>Genre:</label>
-        <input type="text" class="form-control" th:field="*{genre}" />
-        </div>
-        
-        <div>
-        <label>Director:</label>
-        <input type="text" class="form-control" th:field="*{director}" />
-     	</div>
-     	
-     	<div>
-        <label>Duration:</label>
-        <input type="text" class="form-control" th:field="*{duration}" />
-      	</div>
-      	
-      	<div>
-        <label>Ratings:</label>
-        <input type="text" class="form-control" th:field="*{rating}" />
-       </div>
-       
-       <br>
-        
-       <button type="submit" class="btn btn-success"  href="movie-details" style="width:150px">Save</button>
-        <!-- <a class="btn btn-primary" href="movie-details" role="button" type="button">Save</a> -->
-    </form> 
+   <form th:action="@{/save_movie}" method="post">
+  <div class="mb-2">
+    <label class="form-label">Movie Title</label>
+    <input type="text" class="form-control" name="movie_title">
+  </div>
+   <div class="mb-2">
+    <label class="form-label">Genre</label>
+    <input type="text" class="form-control" name="genre">
+  </div>
+   <div class="mb-2">
+    <label class="form-label">Director</label>
+    <input type="text" class="form-control" name="director">
+  </div>
+   <div class="mb-2">
+    <label class="form-label">Duration</label>
+    <input type="time" class="form-control" name="duration">
+  </div>
+   <div class="mb-2">
+    <label class="form-label">Ratings</label>
+    <input type="number" class="form-control" name="rating">
+  </div>
+  <button type="submit" class="btn btn-primary" href="movie-details">Save</button>
+</form>
+</div>
+</div>
     
-    
- 
-
-
+   
 
 </body>
 </html>

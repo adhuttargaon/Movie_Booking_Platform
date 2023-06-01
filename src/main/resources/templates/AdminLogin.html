@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org" th:replace="base::Layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+</head>
+<body>
+<section> 
+<br>
+<br>
+<div class="container p=5" >
+<div class="row">
+<div class="col-md-6 offset-md-3">
+<div class="card">
+<div class="card-header text-center fs-4">Admin Login</div>
+<div class="card-body">
+
+<form th:action="@{/}" method="get">
+
+<div class="mb-3">
+<label>Enter EmailId</label> <input type="email" 
+name="email" class="form-control">
+</div>
+
+<div class="mb-3">
+<label>Enter Password</label> <input type="password" 
+name="password" class="form-control">
+</div>
+
+
+<a class="nav-link active text-center btn-primary" th:href="@{/load_movie_form}">Login</a>
+</form>
+
+ </section>
+
+
+
+
+
+
+</body>
+</html>

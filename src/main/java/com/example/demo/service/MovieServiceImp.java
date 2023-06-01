@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,45 +16,28 @@ public class MovieServiceImp implements MovieService {
 	
 	@Autowired
 	MovieRepo movieRepository;
-	
-	
-	
-	 public MovieServiceImp(MovieRepo movieRepository) {
-	        this.movieRepository = movieRepository;
-	    }
 
 	@Override
-	public Movie getMovieById(Integer id) {
-		
-		  return movieRepository.findById(id).orElse(null);
+	public Movie createMovie(Movie movie) {
+		// TODO Auto-generated method stub
+		return  movieRepository.save(movie);
+	}
+
+	@Override
+	public boolean checkMovieId(int movie_id) {
+		// TODO Auto-generated method stub
+		return movieRepository.existsById(movie_id);
 	}
 
 	@Override
 	public List<Movie> getAllMovies() {
-		 return movieRepository.findAll();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	
-	@Override
-	public Movie createMovie(Movie movie) {
-		return movieRepository.save(movie);
-	}
-
-	@Override
-	public Movie updateMovie(Movie movie) {
-		
-	            return movieRepository.save(movie);
-	      
-	}
-
-	@Override
-	public void deleteMovie(Integer id) {
-		 movieRepository.deleteById(id);
-		
-	}
-
-	/*
-	 * @Override public List<Movie> searchMoviesByMovie_Title(String movie_title) {
-	 * return movieRepository.findByMovie_TitleContainingIgnoreCase(movie_title); }
-	 */
 }
+	
+	
+	
+	 
+

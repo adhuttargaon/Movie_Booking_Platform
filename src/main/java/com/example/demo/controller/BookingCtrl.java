@@ -1,103 +1,80 @@
 package com.example.demo.controller;
 
-import java.time.LocalDate;
-
-
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.example.demo.entity.Booking;
-import com.example.demo.entity.Movie;
 import com.example.demo.repository.BookingRepo;
-import com.example.demo.repository.MovieRepo;
+import com.example.demo.service.BookingService;
 
-
+import jakarta.servlet.http.HttpSession;
 
 //shows data on browser
-@RestController
+@Controller
 public class BookingCtrl {
 	@Autowired
 	BookingRepo bookingRepo;
 	
 	@Autowired
-	MovieRepo movieRepo;
+	BookingService bookingService;
 	
-	
-	
-	 @GetMapping("/bookings")
-    public String getAllBookings(Model model) {
-        List<Booking> bookings = bookingRepo.findAll();
-        model.addAttribute("bookings", bookings);
-        return "bookings";
-    }
-    
-    @GetMapping("/bookings/new")
-    public String showBookingForm(Model model) {
-        List<Movie> movies = movieRepo.findAll();
-        model.addAttribute("movies", movies);
-        model.addAttribute("booking", new Booking());
-        return "booking-form";
-    }
-    
-    @PostMapping("/bookings")
-    public String createBooking(@ModelAttribute("booking") Booking booking) {
-        booking.setBooking_date(LocalDate.now());
-        bookingRepo.save(booking);
-        return "redirect:/bookings";
-    }
-	/*public List<Booking> getAllBookings(){
-		return bookingRepo.findAll();
-				
+	@GetMapping("/bookingDetails")
+	public String bookhome(Model m) {
+			List<Booking> list = bookingRepo.findAll();
+			m.addAttribute("all_booking" , list);
+			return "bookingDetails";
+		}
+		@GetMapping("/load_book_form")
+		public String loadbookForm() {
+			return "bookingHome";
+		}
+		@GetMapping("/edit_book_form/{booking_id}")
+		public String editbookForm(@PathVariable(value = "booking_id") long booking_id, Model m) {
+			Optional<Booking> booking = bookingRepo.findById(booking_id);
+			Booking book = booking.get();
+			m.addAttribute("booking",book);
+			return "edit";
+		}
+		
+		
+		
+		@PostMapping("/save_book")
+		public String savebook(@ModelAttribute Booking booking, HttpSession session) {
+			
+			bookingRepo.save(booking);
+			session.setAttribute("msg","Added Successfully");
+			
+			
+		 return "redirect:/load_book_form";
+		}
+		@PostMapping("/update_book")
+		public String updatebook(@ModelAttribute Booking booking, HttpSession session) {
+			
+			bookingRepo.save(booking);
+			session.setAttribute("msg","Updated Successfully");
+			
+			
+		 return "redirect:/bookingDetails";
+		}
+		@GetMapping("/deletebook/{booking_id}")
+	public String deleteBooking(@PathVariable(value="booking_id") long booking_id, HttpSession session) {
+			bookingRepo.deleteById(booking_id);
+			session.setAttribute("msg","Deleted Successfully");
+			
+			
+			return "redirect:/bookingDetails";
 	}
-	//@GetMapping("/bookings")
-	//public String showHomePage() {
-		//return "homePage";
-	//}
+		
 	
-	@GetMapping("/booking/{id}")
-	public Booking getBookingByid(@PathVariable("id")int id) {
-		return bookingRepo.findById(id).get();
-	}
-	@PostMapping("/booking")
-	public String addMovie(@RequestBody Booking booking)
-	{
-		bookingRepo.save(booking);
-		return "Booking Details Has Been Added!";
-	}
-	
-	@PutMapping("/booking/{id}")
-	public String updateBooking(@RequestBody Booking booking) {
-		Booking booking1 = (Booking)bookingRepo.findById(booking.getBooking_id()).get();
-				if(booking1.getBooking_id()==booking.getBooking_id()) {
-					booking1.setBooking_id(booking.getBooking_id());
-					booking1.setShow_id(booking.getShow_id());
-					booking1.setBooking_date(booking.getBooking_date());
-					booking1.setTotal_amount(booking.getTotal_amount());
-					bookingRepo.save(booking1);
-					
-
+		
+		
+		
 }
-				return "record updated";
-	}
-				@DeleteMapping("/bookings/{id}")
-				public String deleteBookingsById(@PathVariable("id")int id) {
-					Booking booking1 = bookingRepo.findById(id).get();
-					if(booking1.getBooking_id()==id) {
-						bookingRepo.delete(booking1);
-						
-					}
-					return "Record Deleted!";
-				}*/
-	
-}
-				

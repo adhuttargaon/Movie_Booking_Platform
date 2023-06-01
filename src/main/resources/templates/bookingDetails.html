@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th=http://www.thymeleaf.org>
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -35,8 +35,8 @@
 <div class="col-md-12 offset-md-0">
 <div class="card">
 <div th:if="${session.message}">
-<h5 class="text-center text-success"th:text="${session.message}"></h5>
-<h4 class="text-center text-primary">Details</h4>
+<!-- <h5 class="text-center text-success"th:text="${session.message}"></h5> -->
+<h4 class="text-center text-primary">Booking History</h4>
 
 </div>
 <div class="card-header">
@@ -44,29 +44,33 @@
 <table class="table text-center">
   <thead>
     <tr>
-      <th scope="col" >Movie ID</th>
-      <th scope="col" >Movie Title</th>
-      <th scope="col">Genre</th>
-      <th scope="col">Director</th>
-      <th scope="col">Duration</th>
-      <th scope="col">Ratings</th>
+      <th scope="col" >Booking Id</th>
+      <th scope="col" >Show Id</th>
+      <th scope="col">Movie Name</th>
+      <th scope="col">Booking Date</th>
+      <th scope="col">Theatre Name</th>
+      <th scope="col">Theatre Location</th>
+       <th scope="col">Total Amount</th>
+        <th scope="col">Payment Method</th>
         <th>Action</th>
        <th>Action</th>
     </tr>
   </thead>
   <tbody>
-    <tr th:each="movie : ${all_movie}">
-      <th scope="row">[[${movie.movie_id}]]</th>
-      <td>[[${movie.movie_title}]]</td>
-      <td>[[${movie.genre}]]</td>
-      <td>[[${movie.director}]]</td>
-      <td>[[${movie.duration}]]</td>
-      <td>[[${movie.rating}]]</td>
+    <tr th:each="m : ${all_booking}">
+      <th scope="row">[[${m.booking_id}]]</th>
+      <td>[[${m.show_id}]]</td>
+      <td>[[${m.moviename}]]</td>
+      <td>[[${m.booking_date}]]</td>
+      <td>[[${m.theatreName}]]</td>
+      <td>[[${m.theatreLocation}]]</td>
+      <td>[[${m.total_amount}]]</td>
+       <td>[[${m.payment_method}]]</td>
      
      <td>
-     <a th:href="@{'/edit_movie_form/' + ${movie.movie_id}  }" class="btn btn-primary">Edit Booking</a>
+     <a th:href="@{'/edit_book_form/' + ${m.booking_id}  }" class="btn btn-primary">Edit Booking</a>
       
-     <td><a th:href="@{'/deletemovie/' + ${movie.movie_id}  }" class="btn btn-primary">Cancel Booking</a></td>
+     <td><a th:href="@{'/deletebook/' + ${m.booking_id}  }" class="btn btn-primary">Cancel Booking</a></td>
     
     </tr>
   </tbody>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeLeaf.org" th:replace="base::Layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<section> 
+<br>
+<br>
+<div class="container px-4">
+<div class="row">
+<div class="col-md-6 offset-md-3">
+<div class="card">
+<div class="card-header text-center fs-4">Register Admin</div>
+<th:block th:if="${session.message}">
+                <!-- <p class="tesxt-center fs-12 text-success">[[${session.message}]]</p> -->
+                </th:block>
+<div class="card-body">
+
+<form action="createAdmin" method="post">
+
+<div class="mb-3">
+<label>Enter Name</label> <input type="text" 
+name="fullname" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Enter EmailId</label> <input type="email" 
+name="email" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Enter UserName</label> <input type="text" 
+name="username" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label>Enter Password</label> <input type="text" 
+name="password" class="form-control" required>
+</div>
+
+<button class="btn btn-primary col-md-12" >Register</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</section>
+
+
+
+
+
+
+</body>
+</html>
